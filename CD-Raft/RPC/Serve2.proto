@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option go_package =".;service";
+message FastArgs2{
+  int32 give = 1;
+  int64 times = 2;
+}
+
+message FastReply2{
+  int32 isGet = 1;
+}
+
+service Server2 {
+  rpc FastReturnServer(FastArgs2) returns (FastReply2);
+  rpc TellServer(FastArgs2) returns (FastReply2);
+}

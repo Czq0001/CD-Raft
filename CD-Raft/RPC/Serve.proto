@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option go_package =".;service";
+message WriteArgs {
+  string key = 1;
+  string value = 2;
+  int64 times = 3;
+  string ip = 4;
+}
+
+message WriteReply {
+  bool isLeader = 1; // 重定向Leader
+  bool success = 2;
+}
+
+message ReadArgs {
+  string key = 1;
+  string ip = 2;
+}
+
+message ReadReply {
+  bool isLeader  = 1;
+  string value = 2;
+}
+
+service Serve {
+  rpc WriteRequest(WriteArgs) returns (WriteReply);
+  rpc ReadRequest(ReadArgs) returns (ReadReply);
+}
